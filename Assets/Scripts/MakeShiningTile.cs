@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class MakeShiningTile : MonoBehaviour
 {
-    public Tile shiningTile;
+    public AnimatedTile animatedTile;
     public Tilemap TilemapBackground;
     public Tilemap TilemapShining;
     public int width;
@@ -23,11 +23,11 @@ public class MakeShiningTile : MonoBehaviour
                 Vector3Int myPos = new Vector3Int(w, h, 0);
                 if(TilemapBackground.GetTile(myPos) != null)
                 {
-                    int passerNumber = Random.Range(1, 21);
+                    int passerNumber = Random.Range(1, 21); //change this number to change spawn probability
                     int dividedNumber = passerNumber / 20;
                     if(dividedNumber == 1)
                     {
-                        TilemapShining.SetTile(myPos, shiningTile);
+                        TilemapShining.SetTile(myPos, animatedTile);
                     }
                 }
             }
