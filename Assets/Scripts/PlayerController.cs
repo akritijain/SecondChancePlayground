@@ -8,15 +8,18 @@ public class PlayerController : MonoBehaviour
 
 
     public float moveSpeed;
-    public bool isMoving;
+    private bool isMoving;
 
     private bool testDialogueAlreadyCalled;
 
     public GameObject testDialogue;
+    public GameObject backgroundTilemap;
+    public GameObject elixirManager;
 
     private Vector2 input;
     private Animator animator;
     public LayerMask shiningLayer;
+
 
     private void Awake()
     {
@@ -25,6 +28,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        var shiningTilesArray = backgroundTilemap.GetComponent<MakeShiningTile>().sendShiningTilesArray();
+
+        foreach (Dictionary<string, float> i in shiningTilesArray)
+        {
+            if (i["x"] == transform.position.x && i["y"] == transform.position.y && Input.GetKeyDown(KeyCode.Space))
+            {
+                elixirManager.GetComponent<ElixirSystem>().shiningTileTrigger();
+            }
+        }
 
         if (!isMoving)
         {
@@ -52,16 +64,12 @@ public class PlayerController : MonoBehaviour
                 //    testDialogueAlreadyCalled = true;
                 //}
 
+
                 StartCoroutine(Move(targetPos));
 
             }
             animator.SetBool("isMoving", isMoving);
         }
-        //else
-        //{
-        //    testDialogueAlreadyCalled = false;
-        //    testDialogue.GetComponent<TestDialogue>().RevertSignal();
-        //}
     }
 
 

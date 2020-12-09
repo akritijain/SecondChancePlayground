@@ -11,6 +11,8 @@ public class MakeShiningTile : MonoBehaviour
     public int width;
     public int height;
 
+    public List<Dictionary<string, float>> shiningTilesArray = new List<Dictionary<string, float>>();
+
     void Start()
     {
         for(int w = 0; w < width; w++)
@@ -28,10 +30,20 @@ public class MakeShiningTile : MonoBehaviour
                     if(dividedNumber == 1)
                     {
                         TilemapShining.SetTile(myPos, animatedTile);
+                        Dictionary<string, float> Coordinates = new Dictionary<string, float>();
+                        Coordinates.Add("x", wid);
+                        Coordinates.Add("y", hei);
+
+                        shiningTilesArray.Add(Coordinates);
                     }
                 }
             }
         }
+    }
+
+    public List<Dictionary<string, float>> sendShiningTilesArray()
+    {
+        return shiningTilesArray;
     }
 }
 

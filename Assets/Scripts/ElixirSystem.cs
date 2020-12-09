@@ -5,13 +5,29 @@ using UnityEngine;
 public class ElixirSystem : MonoBehaviour
 {
     //standard elixirs
-    public static int fireElixir;
-    public static int waterElixir;
-    public static int ironElixir;
-    public static int earthElixir;
+    public static int fireElixir = 0;
+    public static int waterElixir = 0;
+    public static int ironElixir = 0;
+    public static int earthElixir = 0;
 
     //rare elixirs
-    public static int basmiumElixir;
-    public static int lightningElixir;
-    public static int azureElixir;
+    public static int basmiumElixir = 0;
+    public static int lightningElixir = 0;
+    public static int azureElixir = 0;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log(fireElixir);
+        }
+    }
+
+    public void shiningTileTrigger()
+    {
+        fireElixir = fireElixir + 1;
+    }
+
+
+
 }
